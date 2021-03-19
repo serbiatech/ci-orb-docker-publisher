@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  orb-cli:
+    build:
+      context: ./circleci-cli
+      dockerfile: Dockerfile
+      args:
+        HOST_USER_ID: ${ENV_USER_ID}
+        HOST_GROUP_ID: ${ENV_GROUP_ID}
+        CONTAINER_LANGUAGE: ${ENV_LANGUAGE}
+        CONTAINER_TIMEZONE: ${ENV_TIMEZONE}
+    image: docker-publisher-orb-cli:1.0
+    hostname: docker-publisher-orb-cli
+    container_name: docker-publisher-orb-cli
+    environment:
+      HOST_PROJECT_ROOT: ${USER_HOME_DIR}/${USER_PROJECTS_DIR}/${COMPOSE_PROJECT_NAME}
+    networks:
+      - docker-publisher-orb-network
+    volumes:
+      - ${USER_HOME_DIR}/.circleci:/home/sphere-master/.circleci:rw
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - ../:/home/sphere-master/project:rw
+
+networks:
+  docker-publisher-orb-network:

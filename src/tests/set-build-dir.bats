@@ -5,7 +5,7 @@ setup() {
 
 @test 'set-build-dir-command: Create empty directory.' {
 
-    export BUILD_DIR="./build/"
+    export BUILD_DIR="./docker-publisher-build/"
 
     [ ! -d "${BUILD_DIR}" ]
     [ ! -f "${BUILD_DIR}orderedInheritanceList.txt" ]
@@ -22,7 +22,7 @@ setup() {
 
 @test 'set-build-dir-command: Remove old directory with files and create empty directory.' {
 
-    export BUILD_DIR="./build/"
+    export BUILD_DIR="./docker-publisher-build/"
 
     mkdir -p "${BUILD_DIR}"
 

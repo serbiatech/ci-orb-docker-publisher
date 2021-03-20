@@ -1,0 +1,13 @@
+description: >
+  This command will create "./docker-publisher-build/" folder in the root directory of your project.
+parameters:
+  buildDir:
+    type: string
+    default: "./docker-publisher-build/"
+    description: "Path to the build directory."
+steps:
+  - run:
+      environment:
+        BUILD_DIR: <<parameters.buildDir>>
+      name: Set build directory
+      command: <<include(scripts/set-build-dir.sh)>>

@@ -47,6 +47,8 @@ fi
 
 # Run command for the local execution of the job
 
+echo y | docker system prune -a
+
 docker run -v "${DOCKER_SOCKET}":"${DOCKER_SOCKET}" \
        -v "${HOST_PROJECT_ROOT}":"${CIRCLECI_LOCAL_BUILD_REPOSITORY}" \
        -w "${HOST_PROJECT_ROOT}" \

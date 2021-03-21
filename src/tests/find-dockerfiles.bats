@@ -26,11 +26,11 @@ setup() {
 
     [ -f "${BUILD_DIR}unorderedInheritanceList.txt" ]
 
-    firstDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/1/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt" > /dev/null)
-    secondDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/2/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt" > /dev/null)
+    firstDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/1/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
+    secondDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/2/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
 
-    [ -z "${firstDockerfileFound}" ]
-    [ -z "${secondDockerfileFound}" ]
+    [ -n "${firstDockerfileFound}" ]
+    [ -n "${secondDockerfileFound}" ]
 
     rm -rf "${BUILD_DIR}"
 }

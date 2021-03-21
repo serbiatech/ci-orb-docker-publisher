@@ -12,6 +12,8 @@ setup() {
     export SRC_DIR="./docker-publisher-build/src/"
 
     mkdir -p "${BUILD_DIR}"
+    mkdir -p "${SRC_DIR}test/1/"
+    mkdir -p "${SRC_DIR}test/2/"
 
     echo "FROM namespace/test-image" >> "${SRC_DIR}test/1/Dockerfile"
     echo "FROM namespace/test-image" >> "${SRC_DIR}test/2/Dockerfile"

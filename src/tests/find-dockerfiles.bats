@@ -22,7 +22,7 @@ setup() {
     [ -f "${SRC_DIR}test/1/Dockerfile" ]
     [ -f "${SRC_DIR}test/2/Dockerfile" ]
 
-    SetBuildDir
+    FindDockerfiles
 
     [ -f "${BUILD_DIR}unorderedInheritanceList.txt" ]
 

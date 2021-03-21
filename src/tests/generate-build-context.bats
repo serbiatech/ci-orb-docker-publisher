@@ -19,6 +19,8 @@ setup() {
 
     [ -f "${BUILD_DIR}unorderedInheritanceList.txt" ]
 
+    cat "${BUILD_DIR}unorderedInheritanceList.txt"
+
     GenerateBuildContext
 
     firstDockerfileFound=$(grep "\./docker-publisher-build/src/testNamespace/composer/2-php8.0-cli/Dockerfile | \./docker-publisher-build/src/testNamespace/composer/2-php8.0-cli" "${BUILD_DIR}unorderedInheritanceList.txt")

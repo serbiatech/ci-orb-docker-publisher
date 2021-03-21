@@ -10,7 +10,7 @@ GenerateBuildContext() {
 
     local filePathCharsCount
 
-    IFS=$'\n' read  -r -d '' -a dockerfilePaths < "${BUILD_FOLDER}unorderedInheritanceList.txt"
+    IFS=$'\n' read  -r -d '' -a dockerfilePaths < "${BUILD_DIR}unorderedInheritanceList.txt"
 
     for dockerfilePath in "${dockerfilePaths[@]}"
     do
@@ -24,12 +24,12 @@ GenerateBuildContext() {
 
       context=$(echo "${dockerfilePath}" | cut -c"1-${contextPathLength}")
 
-      echo "${dockerfilePath} | ${context}" >> "${BUILD_FOLDER}tmp_unorderedInheritanceList.txt"
+      echo "${dockerfilePath} | ${context}" >> "${BUILD_DIR}tmp_unorderedInheritanceList.txt"
     done
 
-    mv "${BUILD_FOLDER}tmp_unorderedInheritanceList.txt" "${BUILD_FOLDER}unorderedInheritanceList.txt"
+    mv "${BUILD_DIR}tmp_unorderedInheritanceList.txt" "${BUILD_DIR}unorderedInheritanceList.txt"
 
-    rm -f "${BUILD_FOLDER}tmp_unorderedInheritanceList.txt"
+    rm -f "${BUILD_DIR}tmp_unorderedInheritanceList.txt"
 
 }
 

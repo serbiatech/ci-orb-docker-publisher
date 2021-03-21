@@ -12,22 +12,22 @@ setup() {
     export SRC_DIR="./docker-publisher-build/src/"
 
     mkdir -p "${BUILD_DIR}"
-    mkdir -p "${SRC_DIR}test/1/"
-    mkdir -p "${SRC_DIR}test/2/"
+    mkdir -p "${SRC_DIR}test/1-test/"
+    mkdir -p "${SRC_DIR}test/2-test/"
 
-    echo "FROM namespace/test-image" >> "${SRC_DIR}test/1/Dockerfile"
-    echo "FROM namespace/test-image" >> "${SRC_DIR}test/2/Dockerfile"
+    echo "FROM namespace/test-image" >> "${SRC_DIR}test/1-test/Dockerfile"
+    echo "FROM namespace/test-image" >> "${SRC_DIR}test/2-test/Dockerfile"
 
     [ -d "${BUILD_DIR}" ]
-    [ -f "${SRC_DIR}test/1/Dockerfile" ]
-    [ -f "${SRC_DIR}test/2/Dockerfile" ]
+    [ -f "${SRC_DIR}test/1-test/Dockerfile" ]
+    [ -f "${SRC_DIR}test/2-test/Dockerfile" ]
 
     FindDockerfiles
 
     [ -f "${BUILD_DIR}unorderedInheritanceList.txt" ]
 
-    firstDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/1/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
-    secondDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/2/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
+    firstDockerfileFound=$(grep "1-test" "${BUILD_DIR}unorderedInheritanceList.txt")
+    secondDockerfileFound=$(grep "2-test" "${BUILD_DIR}unorderedInheritanceList.txt")
 
     [ -n "${firstDockerfileFound}" ]
     [ -n "${secondDockerfileFound}" ]

@@ -36,8 +36,17 @@ EOF
     [ -f "${SRC_DIR}testNamespace/composer/2-php8.0-cli/Dockerfile" ]
     [ -f "${SRC_DIR}testNamespace/php/8.0-cli/Dockerfile" ]
 
-    cat "${SRC_DIR}testNamespace/composer/2-php8.0-cli/Dockerfile"
-    cat "${SRC_DIR}testNamespace/php/8.0-cli/Dockerfile"
+    FindDockerfiles
+
+    [ -f "${BUILD_DIR}unorderedInheritanceList.txt" ]
+
+    firstDockerfileFound=$(grep "\./docker-publisher-build/src/testNamespace/composer/2-php8.0-cli/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
+    secondDockerfileFound=$(grep "\./docker-publisher-build/src/testNamespace/php/8.0-cli/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
+
+    [ -n "${firstDockerfileFound}" ]
+    [ -n "${secondDockerfileFound}" ]
+
+    rm -rf "${BUILD_DIR}"
 
 #    export BUILD_DIR="./docker-publisher-build/"
 #    export SRC_DIR="./docker-publisher-build/src/"

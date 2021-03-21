@@ -1,0 +1,18 @@
+description: >
+  This command will find paths to Dockerfiles in your project and store them in file.
+parameters:
+  buildDir:
+    type: string
+    default: "./docker-publisher-build/"
+    description: "Path to the build directory."
+  sourceDir:
+    type: string
+    default: "./src/"
+    description: "Path to the source directory."
+steps:
+  - run:
+      environment:
+        BUILD_DIR: <<parameters.buildDir>>
+        SRC_DIR: <<parameters.sourceDir>>
+      name: Find path to the Dockerfiles
+      command: <<include(scripts/find-dockerfiles.sh)>>

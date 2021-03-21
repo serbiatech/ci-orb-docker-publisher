@@ -29,8 +29,8 @@ setup() {
     firstDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/1/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
     secondDockerfileFound=$(grep -Fxq "./docker-publisher-build/src/test/2/Dockerfile" "${BUILD_DIR}unorderedInheritanceList.txt")
 
-    [ "${firstDockerfileFound}" -eq 0 ]
-    [ "${secondDockerfileFound}" -eq 0 ]
+    (( "${firstDockerfileFound}" == 0 ))
+    (( "${secondDockerfileFound}" == 0 ))
 
     rm -rf "${BUILD_DIR}"
 }

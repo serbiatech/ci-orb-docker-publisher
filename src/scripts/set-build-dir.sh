@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 SetBuildDir() {
 
   rm -rf "${BUILD_DIR}orderedInheritanceList.txt"

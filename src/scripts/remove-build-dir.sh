@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 RemoveBuildDir() {
 
     rm -rf "${BUILD_DIR}"

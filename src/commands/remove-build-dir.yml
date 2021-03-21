@@ -1,0 +1,13 @@
+description: >
+  This command will remove "./docker-publisher-build/" folder from the root directory of your project.
+parameters:
+  buildDir:
+    type: string
+    default: "./docker-publisher-build/"
+    description: "Path to the build directory."
+steps:
+  - run:
+      environment:
+        BUILD_DIR: <<parameters.buildDir>>
+      name: Remove build directory
+      command: <<include(scripts/remove-build-dir.sh)>>

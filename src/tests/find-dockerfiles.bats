@@ -3,7 +3,7 @@ setup() {
     source ./src/scripts/find-dockerfiles.sh
 }
 
-@test 'find-dockerfiles-command: Create list with paths to the Dockerfiles.' {
+@test 'find-dockerfiles-command Test 1: Create list with paths to the Dockerfiles.' {
 
     local firstDockerfileFound
     local secondDockerfileFound

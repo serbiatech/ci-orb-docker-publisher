@@ -3,9 +3,11 @@ setup() {
     source ./src/scripts/generate-build-context.sh
 }
 
-@test 'generate-build-context-command: Generate build context for Dockerfiles.' {
+@test 'generate-build-context-command Test 1: Generate build context for Dockerfiles.' {
 
     export BUILD_DIR="./docker-publisher-build/"
+    export DOCKERFILE_NAME="Dockerfile"
+    export UNORDERED_LIST_NAME="unorderedInheritanceList.txt"
 
     local firstDockerfileFound
     local secondDockerfileFound
@@ -14,17 +16,15 @@ setup() {
 
     [ -d "${BUILD_DIR}" ]
 
-    echo "./src/testNamespace/composer/2-php8.0-cli/Dockerfile" >> "${BUILD_DIR}unorderedInheritanceList.txt"
-    echo "./src/testNamespace/php8.0-cli/Dockerfile" >> "${BUILD_DIR}unorderedInheritanceList.txt"
+    echo "./src/testNamespace/composer/2-php8.0-cli/${DOCKERFILE_NAME}" >> "${BUILD_DIR}${UNORDERED_LIST_NAME}"
+    echo "./src/testNamespace/php/8.0-cli/${DOCKERFILE_NAME}" >> "${BUILD_DIR}${UNORDERED_LIST_NAME}"
 
-    [ -f "${BUILD_DIR}unorderedInheritanceList.txt" ]
-
-    cat "${BUILD_DIR}unorderedInheritanceList.txt"
+    [ -f "${BUILD_DIR}${UNORDERED_LIST_NAME}" ]
 
     GenerateBuildContext
 
-    firstDockerfileFound=$(grep "\./docker-publisher-build/src/testNamespace/composer/2-php8.0-cli/Dockerfile | \./docker-publisher-build/src/testNamespace/composer/2-php8.0-cli" "${BUILD_DIR}unorderedInheritanceList.txt")
-    secondDockerfileFound=$(grep "\./docker-publisher-build/src/testNamespace/php/8.0-cli/Dockerfile | \./docker-publisher-build/src/testNamespace/php/8.0-cli" "${BUILD_DIR}unorderedInheritanceList.txt")
+    firstDockerfileFound=$(grep "\./src/testNamespace/composer/2-php8.0-cli/${DOCKERFILE_NAME} | \./src/testNamespace/composer/2-php8.0-cli" "${BUILD_DIR}${UNORDERED_LIST_NAME}")
+    secondDockerfileFound=$(grep "\./src/testNamespace/php/8.0-cli/${DOCKERFILE_NAME} | \./src/testNamespace/php/8.0-cli" "${BUILD_DIR}${UNORDERED_LIST_NAME}")
 
     [ -n "${firstDockerfileFound}" ]
     [ -n "${secondDockerfileFound}" ]

@@ -3,7 +3,7 @@ setup() {
     source ./src/scripts/set-build-dir.sh
 }
 
-@test 'set-build-dir-command: Create empty directory.' {
+@test 'set-build-dir-command Test 1: Create empty directory.' {
 
     export BUILD_DIR="./docker-publisher-build/"
 
@@ -20,7 +20,7 @@ setup() {
     rm -rf "${BUILD_DIR}"
 }
 
-@test 'set-build-dir-command: Remove old directory with files and create empty directory.' {
+@test 'set-build-dir-command Test 2: Remove old directory with files and create empty directory.' {
 
     export BUILD_DIR="./docker-publisher-build/"
 

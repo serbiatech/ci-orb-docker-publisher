@@ -5,18 +5,15 @@ GenerateBuildContext() {
     local context
     local contextPathLength
 
-    local dockerfilePaths
+    local dockerfilePath
     local dockerfileNameCharsCount
 
     local filePathCharsCount
 
-    IFS=$'\n' read  -r -d '' -a dockerfilePaths < "${BUILD_DIR}unorderedInheritanceList.txt"
-
-    for dockerfilePath in "${dockerfilePaths[@]}"
-    do
+    while read -r dockerfilePath; do
 
       filePathCharsCount=$(echo -n "${dockerfilePath}" | wc -c)
-      dockerfileNameCharsCount=$(echo -n "Dockerfile" | wc -c)
+      dockerfileNameCharsCount=$(echo -n "${DOCKERFILE_NAME}" | wc -c)
 
       ((dockerfileNameCharsCount=dockerfileNameCharsCount+1))
 
@@ -24,12 +21,13 @@ GenerateBuildContext() {
 
       context=$(echo "${dockerfilePath}" | cut -c"1-${contextPathLength}")
 
-      echo "${dockerfilePath} | ${context}" >> "${BUILD_DIR}tmp_unorderedInheritanceList.txt"
-    done
+      echo "${dockerfilePath} | ${context}" >> "${BUILD_DIR}tmp_${UNORDERED_LIST_NAME}"
 
-    mv "${BUILD_DIR}tmp_unorderedInheritanceList.txt" "${BUILD_DIR}unorderedInheritanceList.txt"
+    done <"${BUILD_DIR}${UNORDERED_LIST_NAME}"
 
-    rm -f "${BUILD_DIR}tmp_unorderedInheritanceList.txt"
+    mv "${BUILD_DIR}tmp_${UNORDERED_LIST_NAME}" "${BUILD_DIR}${UNORDERED_LIST_NAME}"
+
+    rm -f "${BUILD_DIR}tmp_${UNORDERED_LIST_NAME}"
 
 }
 

@@ -3,7 +3,7 @@ setup() {
     source ./src/scripts/remove-build-dir.sh
 }
 
-@test 'remove-build-dir-command: Remove old directory with files.' {
+@test 'remove-build-dir-command Test 1: Remove old directory with files.' {
 
     export BUILD_DIR="./docker-publisher-build/"
 
